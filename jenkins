@@ -1,0 +1,21 @@
+node {
+   
+    stage('SCM') {
+    // some block
+    git 'https://github.com/sreedhar-devops/game-of-life.git'
+}
+
+stage('BUILD and PACKAGE') {
+    // some block
+    sh 'mvn package'
+}
+
+stage('Archive ARTIFACTs and TESTRESULTS') {
+    // some block
+    // This step should not normally be used in your script. Consult the inline help for details.
+        archive 'gameoflife-web/target/gameoflife.war'
+        junit 'gameoflife-web/target/surefire-reports/*.xml'
+
+}
+
+}
